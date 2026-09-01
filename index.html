@@ -1,0 +1,1587 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>王子都 | 个人作品集</title>
+        <style>
+        :root {
+            --bg: #0c1519;
+            --surface: #162127;
+            --primary: #3A3534;
+            --primary-soft: #4A443F;
+            --text: #E6D5C0;
+            --muted: #B8A99A;
+            --border: #5A3D2F;
+            --accent: #CF9D7B;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: 
+                repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(255,255,255,0.02) 2px, rgba(255,255,255,0.02) 4px),
+                radial-gradient(circle at 30% 40%, rgba(200,200,220,0.05) 0%, transparent 30%),
+                radial-gradient(circle at 70% 80%, rgba(180,180,200,0.04) 0%, transparent 40%),
+                radial-gradient(circle at 10% 90%, rgba(255,255,255,0.03) 0%, transparent 20%),
+                linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 30%, rgba(0,0,0,0.1) 60%, rgba(255,255,255,0.04) 100%),
+                linear-gradient(180deg, #0C1519 0%, #0C1519 40%, #0C1519 70%, #0C1519 100%);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            background-attachment: fixed;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .page-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px 40px;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: rgb(22, 33, 39);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(114, 75, 57, 0.89);
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .nav-menu a {
+            font-size: 0.96rem;
+            color: var(--muted);
+            transition: color 0.2s ease;
+        }
+        .nav-menu a:hover {
+            color: var(--text);
+        }
+
+        section {
+            margin-top: 36px;
+            padding: 32px;
+            border-radius: 24px;
+            background: rgba(20, 20, 30, 0.75);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        /* ===== Hero 区域（固定高度，背景墙裁剪） ===== */
+                /* ===== Hero 区域（固定像素高度，不随缩放变化） ===== */
+        .hero {
+            position: relative;
+            overflow: hidden;
+            border-radius: 28px;
+            background: var(--bg);
+            color: var(--text);
+            padding: 0;
+            height: 520px;
+        }
+
+        .hero .hero-bg-wall {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            opacity: 0.35;
+            border-radius: 28px;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+         .hero .hero-bg-wall .gallery-wall-scroll {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            gap: 8px;
+            padding: 8px;
+            background: transparent;
+            border: none;
+            border-radius: 0;
+        }
+
+        .hero .hero-bg-wall .scroll-col {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            flex: 1;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .hero .hero-bg-wall .scroll-col .col-track {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            animation: scrollVertical 20s linear infinite;
+        }
+        .hero .hero-bg-wall .scroll-col .col-track:hover {
+            animation-play-state: paused;
+        }
+
+        .hero .hero-bg-wall .scroll-col:nth-child(1) .col-track { animation-delay: 0s; }
+        .hero .hero-bg-wall .scroll-col:nth-child(2) .col-track { animation-delay: -3s; }
+        .hero .hero-bg-wall .scroll-col:nth-child(3) .col-track { animation-delay: -6s; }
+        .hero .hero-bg-wall .scroll-col:nth-child(4) .col-track { animation-delay: -9s; }
+        .hero .hero-bg-wall .scroll-col:nth-child(5) .col-track { animation-delay: -12s; }
+        .hero .hero-bg-wall .scroll-col:nth-child(6) .col-track { animation-delay: -15s; }
+
+        .hero .hero-bg-wall .scroll-tile {
+            border-radius: 12px;
+            overflow: hidden;
+            flex: 1;
+            min-height: 150px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            background: #1a1a2e;
+        }
+
+        .hero .hero-bg-wall .scroll-tile img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            filter: grayscale(0.7);
+        }
+
+        .hero .hero-content {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;  /* 右侧比左侧稍大 */
+            align-items: center;
+            gap: 20px;
+            padding: 48px 32px;
+            height: 100%;
+        }
+
+        .hero-left, .hero-right {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-left {
+            align-items: flex-start;
+            text-align: left;
+            padding-right: 20px;
+            flex-direction: column;
+        }
+
+        .hero-left h1 {
+            margin: 0 0 18px;
+            font-size: clamp(2.2rem, 5vw, 4.5rem);
+            line-height: 1;
+            font-weight: 800;
+        }
+
+        .hero-left p.subtitle {
+            margin: 0 0 16px;
+            font-size: 1rem;
+            color: var(--muted);
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .hero-left p.lead {
+            margin: 0;
+            max-width: 520px;
+            font-size: clamp(0.95rem, 1.2vw, 1.12rem);
+            color: var(--text);
+        }
+        .hero-left p.lead + p.lead { margin-top: 6px; }
+        .hero-left p.lead:last-of-type { margin-bottom: 28px; }
+
+        .hero-right {
+            justify-content: center;
+            padding-left: 20px;
+            width: 260px;
+            height: 340px;
+            flex-shrink: 0;
+            margin-left: auto;    /* 靠右 */
+            margin-right: 20px;   /* 不贴边，留 20px 间距 */
+        }
+
+    
+
+        .button-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 28px;
+            background: var(--border);
+            color: #faefe8;
+            border-radius: 999px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .button-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 14px 30px rgba(33, 86, 255, 0.18);
+        }
+
+        .intro {
+            display: grid;
+            gap: 24px;
+            background: rgba(22, 33, 39, 0.993);
+            border: 1px solid #724B39;
+        }
+        .intro h2 {
+            margin: 0 0 8px;
+            font-size: 1.8rem;
+        }
+        .intro p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        .skill-tag {
+            padding: 10px 16px;
+            border-radius: 999px;
+            background: rgb(114, 75, 57);
+            color: #faefe8;
+            font-size: 0.95rem;
+            border: 1px solid rgba(53, 53, 52, 0.315);
+        }
+
+        .projects {
+            display: grid;
+            gap: 24px;
+        }
+        .project-grid {
+            display: grid;
+            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        }
+        .project-card {
+    padding: 24px;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(207, 157, 123, 0.25);
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-card h3 {
+    margin: 0 0 12px;
+    font-size: 1.25rem;
+    color: var(--text);
+}
+
+.project-card p {
+    margin: 0 0 20px;
+    color: var(--muted);
+    flex: 1;
+}
+
+.project-card .button-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 24px;
+    border-radius: 999px;
+    border: 1.5px solid var(--accent);
+    color: var(--accent);
+    background: rgba(207, 157, 123, 0.08);
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    width: 100%;
+    flex-shrink: 0;
+    text-decoration: none;
+}
+
+.project-card .button-secondary:hover {
+    background: rgba(207, 157, 123, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(207, 157, 123, 0.15);
+}
+
+.project-card .button-secondary .arrow {
+    display: inline-block;
+    font-size: 1.3rem;
+    line-height: 1;
+    transition: transform 0.25s ease;
+}
+
+.project-card .button-secondary:hover .arrow {
+    transform: translateX(5px);
+}
+
+        .case-list {
+            display: grid;
+            gap: 18px;
+        }
+        .case-block {
+            padding: 24px;
+            border-radius: 20px;
+            background: rgba(22, 33, 39, 0.993);
+            border-left: 4px solid var(--accent);
+        }
+        .case-block h3 {
+            margin: 0 0 14px;
+            font-size: 1.25rem;
+        }
+        .case-block p {
+            margin: 0 10px 12px 0;
+            color: var(--muted);
+        }
+
+        .contact {
+            background: #3A3534;
+            border: 1px solid #162B27;
+        }
+        .contact-list {
+            display: grid;
+            gap: 14px;
+            font-size: 1rem;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 16px;
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        @keyframes scrollVertical {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-50%); }
+        }
+
+        /* ===== 响应式 ===== */
+                @media (max-width: 768px) {
+            .nav-inner {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+            }
+            section {
+                padding: 24px;
+            }
+            .hero {
+                height: 440px;
+            }
+            .hero .hero-content {
+                grid-template-columns: 1fr;
+                padding: 32px 24px 48px;
+            }
+            .hero-left, .hero-right {
+                justify-content: center;
+                text-align: center;
+                padding: 0;
+            }
+            .hero-left {
+                align-items: center;
+            }
+            .hero-left h1 {
+                font-size: clamp(2rem, 8vw, 3rem);
+            }
+            .hero-left p.subtitle {
+                text-align: center;
+            }
+            .hero-left p.lead {
+                margin-left: auto;
+                margin-right: auto;
+                font-size: clamp(0.85rem, 2vw, 1rem);
+            }
+            .hero-right img {
+                width: min(180px, 30vw);
+            }
+            .hero .hero-bg-wall {
+                opacity: 0.2;
+            }
+            .hero .hero-bg-wall .gallery-wall-scroll {
+                gap: 8px;
+                padding: 8px;
+            }
+            .hero .hero-bg-wall .scroll-col {
+                gap: 8px;
+            }
+            .hero .hero-bg-wall .scroll-col .col-track {
+                gap: 8px;
+                animation-duration: 16s;
+            }
+            .hero .hero-bg-wall .scroll-tile {
+                min-height: 150px;
+            }
+        }
+        
+
+        @media (max-width: 480px) {
+            .hero {
+                height: 360px;
+            }
+            .hero .hero-content {
+                padding: 20px 16px 32px;
+            }
+            .hero .hero-bg-wall .gallery-wall-scroll {
+                gap: 6px;
+                padding: 6px;
+            }
+            .hero .hero-bg-wall .scroll-col {
+                gap: 6px;
+            }
+            .hero .hero-bg-wall .scroll-col .col-track {
+                gap: 6px;
+                animation-duration: 14s;
+            }
+            .hero .hero-bg-wall .scroll-tile {
+                min-height: 75px;
+                border-radius: 8px;
+            }
+        }
+    
+
+                /* ===== 头像视频 ===== */
+        .hero-right .avatar-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 16px;
+            box-shadow: 0 36px 85px rgba(0, 0, 0, 0.4);
+            border: 6px solid rgba(255, 255, 255, 0.37);
+            background: #724b39;
+            display: block;
+        }
+
+        /* ===== LineSidebar 导航（纯原生版） ===== */
+        .line-sidebar__list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            position: relative;
+        }
+
+        .line-sidebar__item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            cursor: pointer;
+            padding: 6px 0;
+            transition: none;
+            will-change: transform, opacity;
+            --effect: 0;
+            transform: translateX(calc(var(--effect) * -12px));
+            opacity: calc(0.4 + var(--effect) * 0.6);
+            position: relative;
+        }
+
+        .line-sidebar__item .line-sidebar__marker {
+            display: block;
+            width: 3px;
+            height: 20px;
+            border-radius: 4px;
+            background: #6c6c6c;
+            transition: background 0.3s ease, transform 0.3s ease;
+            flex-shrink: 0;
+            transform: scaleY(calc(0.3 + var(--effect) * 0.7));
+        }
+
+        .line-sidebar__item .line-sidebar__label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.95rem;
+            color: #c4c4c4;
+            transition: color 0.3s ease;
+        }
+
+        .line-sidebar__item .line-sidebar__index {
+            font-size: 0.7rem;
+            color: #6c6c6c;
+            min-width: 24px;
+            font-weight: 300;
+            letter-spacing: 0.05em;
+            transition: color 0.3s ease;
+        }
+
+        .line-sidebar__item .line-sidebar__text {
+            font-weight: 400;
+            letter-spacing: 0.03em;
+            transition: color 0.3s ease;
+        }
+
+        /* ===== 高亮状态：由 JS 控制 --effect ===== */
+        .line-sidebar__item.active .line-sidebar__marker {
+            background: #A855F7;
+            transform: scaleY(1);
+        }
+
+        .line-sidebar__item.active .line-sidebar__label {
+            color: #ffffff;
+        }
+
+        .line-sidebar__item.active .line-sidebar__index {
+            color: #A855F7;
+        }
+
+        .line-sidebar__item.active .line-sidebar__text {
+            color: #ffffff;
+        }
+
+        @media (max-width: 768px) {
+            .line-sidebar {
+                left: 12px;
+            }
+            .line-sidebar__item .line-sidebar__index {
+                display: none;
+            }
+            .line-sidebar__item .line-sidebar__text {
+                font-size: 0.8rem;
+            }
+            .line-sidebar__item .line-sidebar__marker {
+                height: 14px;
+                width: 2px;
+            }
+            .line-sidebar__list {
+                gap: 8px;
+            }
+            .line-sidebar__item {
+                gap: 10px;
+                transform: translateX(calc(var(--effect) * -6px));
+            }
+        }
+
+        @media (max-width: 480px) {
+            .line-sidebar {
+                left: 8px;
+            }
+            .line-sidebar__item .line-sidebar__text {
+                font-size: 0.7rem;
+            }
+            .line-sidebar__item .line-sidebar__marker {
+                height: 10px;
+                width: 2px;
+            }
+            .line-sidebar__list {
+                gap: 6px;
+            }
+            .line-sidebar__item {
+                gap: 6px;
+                transform: translateX(calc(var(--effect) * -4px));
+            }
+        }
+
+               /* ===== 左侧目录导航（修复版） ===== */
+        .line-sidebar {
+            position: fixed;
+            left: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            user-select: none;
+            pointer-events: none;
+            background: rgba(12, 21, 25, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 16px 14px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        .line-sidebar__list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            pointer-events: auto;
+        }
+
+        .line-sidebar__item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            padding: 6px 10px;
+            border-radius: 8px;
+            transition: background 0.2s ease;
+            will-change: transform, opacity;
+            --effect: 0;
+            transform: translateX(calc(var(--effect) * -10px));
+            opacity: calc(0.4 + var(--effect) * 0.6);
+            position: relative;
+        }
+
+        .line-sidebar__item:hover {
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .line-sidebar__item .line-sidebar__marker {
+            display: block;
+            width: 3px;
+            height: 18px;
+            border-radius: 4px;
+            background: #6c6c6c;
+            transition: background 0.3s ease, transform 0.3s ease;
+            flex-shrink: 0;
+            transform: scaleY(calc(0.3 + var(--effect) * 0.7));
+        }
+
+        .line-sidebar__item .line-sidebar__label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+            color: #c4c4c4;
+            transition: color 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .line-sidebar__item .line-sidebar__index {
+            font-size: 0.65rem;
+            color: #6c6c6c;
+            min-width: 22px;
+            font-weight: 300;
+            letter-spacing: 0.05em;
+            transition: color 0.3s ease;
+            text-align: right;
+        }
+
+        .line-sidebar__item .line-sidebar__text {
+            font-weight: 400;
+            letter-spacing: 0.03em;
+            transition: color 0.3s ease;
+        }
+
+        /* ===== 高亮状态 ===== */
+        .line-sidebar__item.active .line-sidebar__marker {
+            background: #CF9D7B;
+            transform: scaleY(1);
+        }
+
+        .line-sidebar__item.active .line-sidebar__label {
+            color: #ffffff;
+        }
+
+        .line-sidebar__item.active .line-sidebar__index {
+            color: #CF9D7B;
+        }
+
+        .line-sidebar__item.active .line-sidebar__text {
+            color: #ffffff;
+        }
+
+        /* ===== 大屏（>1024px）：字大，有存在感 ===== */
+        @media (min-width: 1025px) {
+            .line-sidebar {
+                left: 40px;
+                padding: 20px 18px;
+                border-radius: 20px;
+            }
+            .line-sidebar__list {
+                gap: 14px;
+            }
+            .line-sidebar__item {
+                gap: 16px;
+                padding: 8px 14px;
+                transform: translateX(calc(var(--effect) * -14px));
+            }
+            .line-sidebar__item .line-sidebar__label {
+                font-size: 1.1rem;
+                gap: 14px;
+            }
+            .line-sidebar__item .line-sidebar__index {
+                font-size: 0.75rem;
+                min-width: 28px;
+            }
+            .line-sidebar__item .line-sidebar__marker {
+                height: 24px;
+                width: 4px;
+            }
+        }
+
+        /* ===== 平板（768-1024px）：适中 ===== */
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .line-sidebar {
+                left: 24px;
+                padding: 14px 12px;
+            }
+            .line-sidebar__list {
+                gap: 8px;
+            }
+            .line-sidebar__item {
+                gap: 10px;
+                padding: 4px 8px;
+                transform: translateX(calc(var(--effect) * -8px));
+            }
+            .line-sidebar__item .line-sidebar__label {
+                font-size: 0.85rem;
+                gap: 8px;
+            }
+            .line-sidebar__item .line-sidebar__index {
+                font-size: 0.6rem;
+                min-width: 18px;
+            }
+            .line-sidebar__item .line-sidebar__marker {
+                height: 14px;
+                width: 2.5px;
+            }
+        }
+
+        /* ===== 手机（<768px）：紧凑，不重叠 ===== */
+        @media (max-width: 768px) {
+            .line-sidebar {
+                left: 10px;
+                padding: 10px 8px;
+                border-radius: 12px;
+                background: rgba(12, 21, 25, 0.75);
+                backdrop-filter: blur(16px);
+                -webkit-backdrop-filter: blur(16px);
+            }
+            .line-sidebar__list {
+                gap: 4px;
+            }
+            .line-sidebar__item {
+                gap: 6px;
+                padding: 3px 6px;
+                transform: translateX(calc(var(--effect) * -4px));
+            }
+            .line-sidebar__item .line-sidebar__index {
+                display: none;
+            }
+            .line-sidebar__item .line-sidebar__label {
+                font-size: 0.7rem;
+                gap: 6px;
+            }
+            .line-sidebar__item .line-sidebar__text {
+                font-size: 0.7rem;
+            }
+            .line-sidebar__item .line-sidebar__marker {
+                height: 12px;
+                width: 2px;
+            }
+            .line-sidebar__item:hover {
+                background: transparent;
+            }
+        }
+
+        /* ===== 超小屏（<400px）：更紧凑 ===== */
+        @media (max-width: 400px) {
+            .line-sidebar {
+                left: 6px;
+                padding: 6px 4px;
+                border-radius: 8px;
+            }
+            .line-sidebar__list {
+                gap: 2px;
+            }
+            .line-sidebar__item {
+                padding: 2px 4px;
+                gap: 4px;
+                transform: translateX(calc(var(--effect) * -2px));
+            }
+            .line-sidebar__item .line-sidebar__label {
+                font-size: 0.6rem;
+                gap: 4px;
+            }
+            .line-sidebar__item .line-sidebar__marker {
+                height: 8px;
+                width: 1.5px;
+            }
+        }
+   
+    /* ===== 案例详情标题 icon 脉动动效 ===== */
+@keyframes pulse-icon {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.15) rotate(-4deg); }
+}
+           
+    </style>
+
+</head>
+<body>
+
+
+     <!-- ★★★ 左侧目录导航 ★★★ -->
+    <nav class="line-sidebar" id="lineSidebar">
+        <ul class="line-sidebar__list" id="sidebarList">
+            <li class="line-sidebar__item" data-target="home">
+                <span class="line-sidebar__marker"></span>
+                <span class="line-sidebar__label">
+                    <span class="line-sidebar__index">01</span>
+                    <span class="line-sidebar__text">首页</span>
+                </span>
+            </li>
+            <li class="line-sidebar__item" data-target="about">
+                <span class="line-sidebar__marker"></span>
+                <span class="line-sidebar__label">
+                    <span class="line-sidebar__index">02</span>
+                    <span class="line-sidebar__text">关于</span>
+                </span>
+            </li>
+            <li class="line-sidebar__item" data-target="projects">
+                <span class="line-sidebar__marker"></span>
+                <span class="line-sidebar__label">
+                    <span class="line-sidebar__index">03</span>
+                    <span class="line-sidebar__text">项目</span>
+                </span>
+            </li>
+            <li class="line-sidebar__item" data-target="contact">
+                <span class="line-sidebar__marker"></span>
+                <span class="line-sidebar__label">
+                    <span class="line-sidebar__index">04</span>
+                    <span class="line-sidebar__text">联系</span>
+                </span>
+            </li>
+        </ul>
+    </nav>        
+
+    <header>
+
+   
+
+        <div class="page-container nav-inner">
+            <div class="logo">欢迎来到我的个人Portfolio</div>
+            <nav class="nav-menu">
+                <a href="#home">首页</a>
+                <a href="#projects">项目</a>
+                <a href="#about">关于</a>
+                <a href="#contact">联系</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="page-container">
+                <section id="home" class="hero">
+            <!-- ★★★ 动态背景墙（藏在头像后面） ★★★ 图片裁切标准：宽高比 3:2（如 600×400px），JPG 格式，每张 < 200KB。-->
+            <div class="hero-bg-wall">
+                <div class="gallery-wall-scroll">
+                    <!-- 第1列 -->
+                    <div class="scroll-col">
+                        <div class="col-track">
+                            <div class="scroll-tile" style="background: #2a2a4e;"></div>
+                            <div class="scroll-tile" style="background: #3a2a3e;"></div>
+                            <div class="scroll-tile" style="background: #1a3a4e;"></div>
+                            <div class="scroll-tile" style="background: #2a2a4e;"></div>
+                            <div class="scroll-tile" style="background: #3a2a3e;"></div>
+                            <div class="scroll-tile" style="background: #1a3a4e;"></div>
+                        </div>
+                    </div>
+                    <!-- 第2列 -->
+                    <div class="scroll-col">
+                        <div class="col-track">
+                            <div class="scroll-tile" style="background: #3a3a2e;"></div>
+                            <div class="scroll-tile" style="background: #2a3a4e;"></div>
+                            <div class="scroll-tile" style="background: #4a2a3e;"></div>
+                            <div class="scroll-tile" style="background: #3a3a2e;"></div>
+                            <div class="scroll-tile" style="background: #2a3a4e;"></div>
+                            <div class="scroll-tile" style="background: #4a2a3e;"></div>
+                        </div>
+                    </div>
+                    <!-- 第3列 -->
+                    <div class="scroll-col">
+                        <div class="col-track">
+                            <div class="scroll-tile" style="background: #2a4a3e;"></div>
+                            <div class="scroll-tile" style="background: #3a2a4e;"></div>
+                            <div class="scroll-tile" style="background: #1a3a2e;"></div>
+                            <div class="scroll-tile" style="background: #2a4a3e;"></div>
+                            <div class="scroll-tile" style="background: #3a2a4e;"></div>
+                            <div class="scroll-tile" style="background: #1a3a2e;"></div>
+                        </div>
+                    </div>
+                    <!-- 第4列 -->
+                    <div class="scroll-col">
+                        <div class="col-track">
+                            <div class="scroll-tile" style="background: #4a3a2e;"></div>
+                            <div class="scroll-tile" style="background: #2a4a4e;"></div>
+                            <div class="scroll-tile" style="background: #3a3a4e;"></div>
+                            <div class="scroll-tile" style="background: #4a3a2e;"></div>
+                            <div class="scroll-tile" style="background: #2a4a4e;"></div>
+                            <div class="scroll-tile" style="background: #3a3a4e;"></div>
+                        </div>
+                    </div>
+                    <!-- 第5列 -->
+                    <div class="scroll-col">
+                        <div class="col-track">
+                            <div class="scroll-tile" style="background: #2a2a3e;"></div>
+                            <div class="scroll-tile" style="background: #4a4a2e;"></div>
+                            <div class="scroll-tile" style="background: #2a4a2e;"></div>
+                            <div class="scroll-tile" style="background: #2a2a3e;"></div>
+                            <div class="scroll-tile" style="background: #4a4a2e;"></div>
+                            <div class="scroll-tile" style="background: #2a4a2e;"></div>
+                        </div>
+                    </div>
+                    <!-- 第6列 -->
+                    <div class="scroll-col">
+                        <div class="col-track">
+                            <div class="scroll-tile" style="background: #3a2a2e;"></div>
+                            <div class="scroll-tile" style="background: #2a3a3e;"></div>
+                            <div class="scroll-tile" style="background: #4a3a4e;"></div>
+                            <div class="scroll-tile" style="background: #3a2a2e;"></div>
+                            <div class="scroll-tile" style="background: #2a3a3e;"></div>
+                            <div class="scroll-tile" style="background: #4a3a4e;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hero 内容（浮在背景上面） -->
+            <div class="hero-content">
+                <div class="hero-left">
+                    <div>
+                        <p class="subtitle">市场营销 | 整合营销 | 数字营销</p>
+                        <h1>我是王子都</h1>
+                        <h3>一位专注于平销期增长的整合营销人</h3>
+                        <p class="lead">我擅长为美妆及消费品牌策划品类节点活动，通过数据洞察与资源整合，把非大促窗口变成可持续的增长引擎</p>
+                        <p class="lead">拥有京东集团美妆类目整合营销经验，曾助力欧诗漫、科兰黎等品牌实现数倍至十数倍的成交跃升。</p>
+                        <a class="button-primary" href="#projects">查看我的项目</a>
+                    </div>
+                </div>
+              <div class="hero-right">
+ <video
+    id="avatarVideo"
+    class="avatar-video"
+    src="static/videos/hero.mp4"
+    muted
+    playsInline
+    preload="auto"
+></video>
+            </div>
+        </section>
+
+         
+
+        <section id="about" class="intro">
+    <h2>关于我</h2>
+   <p style="font-size: 1.05rem; line-height: 1.8; color: var(--text);">
+    </p>我叫王子都，是一名整合营销人，谢菲尔德大学数字经济硕士，之前在京东做美妆类目的整合营销。工作方式可以概括为“定策略，看数据”——策略上能把品牌联营和站内外资源串起来打完整战役；数据上习惯追踪曝光到转化的每一层漏斗，靠实时反馈调投放，把每一分预算的价值最大化。
+</p>在京东两年，从零搭了美妆品类周的活动体系，2025年全年跑了11场，平销期增量基本稳定，欧诗漫、科兰黎、希思黎这几个品牌在活动里都跑出过数倍到十数倍的成交；同时沉淀了覆盖搜索、展示、效果广告和KOL投放的跨渠道打法，覆盖到百万级用户量级，ROI和复购都在往上走。增长这件事我理解得很简单——大促靠爆发，平销靠系统，把日常节点拆明白、跑通、固化，就能变成可复用的东西。
+</p>
+    <div class="skill-tags" style="margin-top: 24px;">
+        <span class="skill-tag">商务谈判</span>
+        <span class="skill-tag">整合营销策划</span>
+        <span class="skill-tag">用户定位及洞察</span>
+        <span class="skill-tag">品牌联合营销</span>
+    </div>
+</section>
+
+    <!-- ===== 项目 & 案例详情展示（合并为一个色块） ===== -->
+<section id="projects" class="projects">
+
+    <!-- 项目/作品集 -->
+    <h2 style="margin-bottom: 20px;">项目 / 作品集</h2>
+    <div class="project-grid">
+        <article class="project-card">
+            <h3>案例一：品类周活动全流程</h3>
+            <p>从0到1搭建品类周活动的完整交付体系，定位→整合→引爆→复盘四个环节环环相扣。</p>
+            <a class="button-secondary" href="#case-detail-1">
+                <span>查看完整案例</span>
+                <span class="arrow">→</span>
+            </a>
+        </article>
+
+        <article class="project-card">
+            <h3>案例二：用户洞察与人群策略</h3>
+            <p>从圈定到复购的全周期用户运营，用数据圈人、用逻辑分层，让预算花在对的人身上。</p>
+            <a class="button-secondary" href="#case-detail-2">
+                <span>查看完整案例</span>
+                <span class="arrow">→</span>
+            </a>
+        </article>
+
+        <article class="project-card">
+            <h3>案例三：跨渠道投放体系搭建</h3>
+            <p>搜索 · 展示 · 效果 · KOL 四层协同，效率导向的 ROI/CAC 优化实践。</p>
+            <a class="button-secondary" href="#case-detail-3">
+                <span>查看完整案例</span>
+                <span class="arrow">→</span>
+            </a>
+        </article>
+    </div>
+
+    <!-- 分割线 -->
+    <hr style="border: none; border-top: 1px solid rgba(207, 157, 123, 0.2); margin: 32px 0 20px 0;" />
+
+    <!-- 案例详情展示（内嵌标题，无独立色块） -->
+    <h2 style="margin: 0 0 20px 0; font-size: 1.5rem; color: var(--text); letter-spacing: 0.05em;">案例详情展示</h2>
+
+    <div class="case-list">
+        <!-- 案例一：美妆品类周活动全流程工作流搭建 -->
+        <div class="case-block" id="case-detail-1" style="border-left: 4px solid var(--accent); padding: 28px 32px;">
+
+            <div style="margin-bottom: 28px;">
+                <h3 style="font-size: 1.4rem; margin-bottom: 6px; color: var(--text);">案例一：美妆品类周活动全流程工作流搭建</h3>
+                <p style="color: var(--muted); font-size: 0.95rem; margin: 0;">从0到1搭建品类周活动的完整交付体系，通过定位、整合、引爆、复盘四个环节的系统化执行，实现从认知到成交的全链路闭环。</p>
+            </div>
+
+            <!-- 核心结论 -->
+            <div style="margin-bottom: 36px;">
+                <div style="background: rgba(207, 157, 123, 0.08); border-left: 3px solid var(--accent); padding: 16px 20px; border-radius: 6px;">
+                    <p style="font-size: 1rem; color: var(--text); margin: 0;">
+                        <strong>核心结论：</strong>品类周的执行分为 <strong style="color: var(--accent);">定位 → 整合 → 引爆 → 复盘</strong> 四个关键环节，每个环节环环相扣，形成完整的活动交付闭环。
+                    </p>
+                </div>
+            </div>
+
+            <!-- 时间线 -->
+            <div style="margin-bottom: 36px;">
+                <h4 style="color: var(--text); font-size: 1rem; margin-bottom: 18px; letter-spacing: 0.05em;">📋 活动执行全流程时间线</h4>
+                <div style="position: relative; display: flex; justify-content: space-between; align-items: flex-start; padding: 16px 0;">
+                    <div style="position: absolute; top: 34px; left: 0; right: 0; height: 2px; background: var(--border);"></div>
+                    <div style="display: flex; flex-direction: column; align-items: center; flex: 1; position: relative; z-index: 1;">
+                        <div style="width: 14px; height: 14px; border-radius: 50%; background: var(--accent); border: 2px solid var(--bg); box-shadow: 0 0 0 3px rgba(207, 157, 123, 0.2);"></div>
+                        <div style="margin-top: 12px; text-align: center; font-weight: 600; color: var(--text); font-size: 0.85rem;">定位</div>
+                        <div style="color: var(--muted); font-size: 0.65rem;">Week 1</div>
+                    </div>
+                    <div style="display: flex; flex-direction: column; align-items: center; flex: 1; position: relative; z-index: 1;">
+                        <div style="width: 14px; height: 14px; border-radius: 50%; background: var(--border); border: 2px solid var(--bg); box-shadow: 0 0 0 3px rgba(255,255,255,0.05);"></div>
+                        <div style="margin-top: 12px; text-align: center; font-weight: 600; color: var(--text); font-size: 0.85rem;">整合</div>
+                        <div style="color: var(--muted); font-size: 0.65rem;">Week 2-3</div>
+                    </div>
+                    <div style="display: flex; flex-direction: column; align-items: center; flex: 1; position: relative; z-index: 1;">
+                        <div style="width: 14px; height: 14px; border-radius: 50%; background: var(--border); border: 2px solid var(--bg); box-shadow: 0 0 0 3px rgba(255,255,255,0.05);"></div>
+                        <div style="margin-top: 12px; text-align: center; font-weight: 600; color: var(--text); font-size: 0.85rem;">引爆</div>
+                        <div style="color: var(--muted); font-size: 0.65rem;">Week 4</div>
+                    </div>
+                    <div style="display: flex; flex-direction: column; align-items: center; flex: 1; position: relative; z-index: 1;">
+                        <div style="width: 14px; height: 14px; border-radius: 50%; background: var(--border); border: 2px solid var(--bg); box-shadow: 0 0 0 3px rgba(255,255,255,0.05);"></div>
+                        <div style="margin-top: 12px; text-align: center; font-weight: 600; color: var(--text); font-size: 0.85rem;">复盘</div>
+                        <div style="color: var(--muted); font-size: 0.65rem;">Week 5</div>
+                    </div>
+                </div>
+               
+            
+            </div>
+
+            <!-- 定位 -->
+            <div style="margin-bottom: 32px;">
+                <h4 style="color: var(--text); font-size: 1.2rem; margin-bottom: 4px;">🎯 定位</h4>
+                <p style="color: var(--muted); font-size: 0.85rem; margin-bottom: 16px;">从人-货-场三个维度锁定活动方向</p>
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px;">
+                    <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 10px; padding: 16px;">
+                        <div style="color: var(--accent); font-weight: 600; font-size: 0.9rem;">👥 人群圈定</div>
+                        <div style="color: var(--muted); font-size: 0.85rem; margin-top: 4px;">“产品半年周期、加购未购、高偏好、价格敏感、高浏览未购买”人群包，按月龄分层</div>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 10px; padding: 16px;">
+                        <div style="color: var(--accent); font-weight: 600; font-size: 0.9rem;">🛍️ 节点选择</div>
+                        <div style="color: var(--muted); font-size: 0.85rem; margin-top: 4px;">2月防晒、3月抗衰、4月美白、7月面膜、9月精华油、12月面霜等全年核心品类节点</div>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 10px; padding: 16px;">
+                        <div style="color: var(--accent); font-weight: 600; font-size: 0.9rem;">🏬 场景布局</div>
+                        <div style="color: var(--muted); font-size: 0.85rem; margin-top: 4px;">“站外大曝光触达 → 品牌联合页 → 品类页黄金位 → 搜索词卡位”多层曝光矩阵</div>
+                    </div>
+                </div>
+                <div style="margin-top: 14px; border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.06);">
+                    <img src="static/image/renhuochang.png" alt="人货场三角模型图" style="width: 100%; height: auto; display: block;" />
+                </div>
+            </div>
+
+ <!-- ===== 整合 → 引爆 → 复盘（连贯三列） ===== -->
+<div style="margin-bottom: 32px;">
+
+    <!-- 三列 -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px;">
+
+        <!-- 整合 -->
+        <div>
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 2px solid var(--accent);">
+                <span style="font-size: 1.2rem;">🔗</span>
+                <span style="color: var(--text); font-weight: 600; font-size: 1rem;">整合</span>
+                <span style="color: var(--muted); font-size: 0.65rem; margin-left: auto;">Week 2-3</span>
+            </div>
+            <div style="color: var(--muted); font-size: 0.85rem; line-height: 2;">
+                <span style="color: var(--text); font-weight: 500;">站内资源位</span><br>
+                首页大曝光 · 品类页黄金位 · 搜索词卡位<br>
+                <span style="color: var(--text); font-weight: 500;">站外种草</span><br>
+                抖音挑战赛 · 小红书快闪活动 · KOL种草<br>
+                <span style="color: var(--text); font-weight: 500;">品牌方协同</span><br>
+                品牌会议 · brief文档 · 上下游同步
+            </div>
+        </div>
+
+        <!-- 引爆 -->
+        <div>
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 2px solid var(--accent);">
+                <span style="font-size: 1.2rem;">🚀</span>
+                <span style="color: var(--text); font-weight: 600; font-size: 1rem;">引爆</span>
+                <span style="color: var(--muted); font-size: 0.65rem; margin-left: auto;">Week 4</span>
+            </div>
+            <div style="color: var(--muted); font-size: 0.85rem; line-height: 2;">
+                <span style="color: var(--text); font-weight: 500;">活动启动</span><br>
+                品牌联合页 · 秒杀区 · 爆品坑 · 搜索卡位<br>
+                <span style="color: var(--text); font-weight: 500;">客服宣传</span><br>
+                进线咨询引导至活动页领券转化<br>
+                <span style="color: var(--text); font-weight: 500;">入群裂变</span><br>
+                邀请好友享折扣 · 引导用户进私域留存
+            </div>
+        </div>
+
+        <!-- 复盘 -->
+        <div>
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 2px solid var(--accent);">
+                <span style="font-size: 1.2rem;">📊</span>
+                <span style="color: var(--text); font-weight: 600; font-size: 1rem;">复盘</span>
+                <span style="color: var(--muted); font-size: 0.65rem; margin-left: auto;">Week 5</span>
+            </div>
+            <div style="color: var(--muted); font-size: 0.85rem; line-height: 2;">
+                <span style="color: var(--text); font-weight: 500;">数据看板</span><br>
+                曝光→点击→加购→转化 全漏斗追踪<br>
+                <span style="color: var(--text); font-weight: 500;">核心指标</span><br>
+                成交同比 · 爆发系数 · 对标竞品<br>
+                <span style="color: var(--text); font-weight: 500;">经验沉淀</span><br>
+                人群模板 · 排期表 · 复盘框架
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 底部串联箭头（极简） -->
+    <div style="display: flex; justify-content: center; gap: 12px; margin-top: 18px; color: var(--border); font-size: 0.8rem; letter-spacing: 0.08em;">
+        <span style="color: var(--muted); opacity: 0.5;">整合资源</span>
+        <span>▸</span>
+        <span style="color: var(--muted); opacity: 0.5;">集中引爆</span>
+        <span>▸</span>
+        <span style="color: var(--muted); opacity: 0.5;">复盘迭代</span>
+    </div>
+
+</div>
+
+<!-- 6图错落网格（整合+引爆+复盘统一展示） -->
+<div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 24px;">
+
+    <div style="border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); grid-row: span 2;">
+        <img src="static/image/neibu_ziyuan.jpg" alt="站内资源位" style="width:100%; height:100%; object-fit:cover; display:block;" />
+    </div>
+
+    <div style="border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08);">
+        <img src="static/image/wai bu_ziyuan.jpg" alt="站外种草" style="width:100%; height:100%; object-fit:cover; display:block;" />
+    </div>
+
+    <div style="border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); grid-row: span 4;">
+        <img src="static/image/huodong_online.GIF" alt="活动上线" style="width:100%; height:100%; object-fit:cover; display:block;" />
+    </div>
+
+    <div style="border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08);">
+        <img src="static/image/shequn_liebian.jpg" alt="社群裂变" style="width:100%; height:100%; object-fit:cover; display:block;" />
+    </div>
+
+    <div style="border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); grid-row: span 2;">
+        <img src="static/image/dashboard.jpg" alt="数据看板" style="width:100%; height:100%; object-fit:cover; display:block;" />
+    </div>
+
+    <div style="border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); grid-row: span 2;">
+        <img src="static/image/loudou_fenxi.jpg" alt="漏斗分析" style="width:100%; height:100%; object-fit:cover; display:block;" />
+    </div>
+
+</div>
+
+            <!-- 结论 -->
+            <div style="border-top: 1px solid var(--border); padding-top: 24px;">
+                <div style="background: rgba(207, 157, 123, 0.06); border-radius: 10px; padding: 18px 22px;">
+                    <p style="color: var(--text); font-size: 1rem; margin: 0;">
+                        <strong>💡 核心成果：</strong>通过“定位 → 整合 → 引爆 → 复盘”的标准化流程，品类周活动实现了从0到1的系统化落地。<br>
+                        <span style="color: var(--accent); font-weight: 600;">2025年全年举办11场品类周活动</span><span style="color: var(--muted);">，累计拉动可观的平销期增量，用户增长近翻倍，验证了这套工作流的可复制性和高效性。</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 案例二 -->
+        <div class="case-block" id="case-detail-2" style="border-left: 4px solid var(--accent); margin-top: 28px; padding: 28px 32px;">
+            <h3 style="font-size: 1.4rem; margin-bottom: 4px; color: var(--text);">案例二：用户洞察驱动的人群策略</h3>
+            <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 18px;">从圈定到复购的全周期运营</p>
+
+            <div style="background: rgba(207, 157, 123, 0.08); border-left: 3px solid var(--accent); padding: 14px 18px; border-radius: 6px; margin-bottom: 20px;">
+                <p style="color: var(--text); font-size: 0.9rem; margin: 0;">在美妆品类平销期，增长的关键不在于“流量够不够大”，而在于“人对不对”。通过历史成交数据与美妆消费行为分析，建立了一套从人群圈定、分层触达到复购追投的完整用户运营体系。</p>
+            </div>
+
+            <div style="color: var(--accent); font-weight: 600; font-size: 0.85rem; margin-bottom: 10px;">📊 策略：用数据圈人，用逻辑分层</div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 18px;">
+                <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 10px; padding: 14px 12px; text-align: center;">
+                    <div style="font-size: 1.3rem;">🆕</div>
+                    <div style="color: var(--text); font-weight: 600; font-size: 0.8rem;">高潜新客</div>
+                    <div style="color: var(--muted); font-size: 0.7rem;">浏览未购 · 搜索未成交</div>
+                    <div style="color: var(--muted); font-size: 0.65rem; opacity: 0.7;">品类教育+首单转化</div>
+                </div>
+                <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 10px; padding: 14px 12px; text-align: center;">
+                    <div style="font-size: 1.3rem;">🛒</div>
+                    <div style="color: var(--text); font-weight: 600; font-size: 0.8rem;">行为意向客</div>
+                    <div style="color: var(--muted); font-size: 0.7rem;">加购未购 · 收藏未下单</div>
+                    <div style="color: var(--muted); font-size: 0.65rem; opacity: 0.7;">限时券+库存提醒</div>
+                </div>
+                <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 10px; padding: 14px 12px; text-align: center;">
+                    <div style="font-size: 1.3rem;">🔄</div>
+                    <div style="color: var(--text); font-weight: 600; font-size: 0.8rem;">已购复购客</div>
+                    <div style="color: var(--muted); font-size: 0.7rem;">历史成交 · 按品类分层</div>
+                    <div style="color: var(--muted); font-size: 0.65rem; opacity: 0.7;">生命周期管理+关联推荐</div>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 18px;">
+                <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px;">
+                    <div style="color: var(--accent); font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;">⚙️ 执行</div>
+                    <div style="color: var(--muted); font-size: 0.8rem; line-height: 1.6;">
+                        <strong style="color: var(--text);">高潜新客</strong> → DMP圈定 + 新客券<br>
+                        <strong style="color: var(--text);">行为意向客</strong> → 短信/站内信 + 库存提醒<br>
+                        <strong style="color: var(--text);">已购复购客</strong> → 品类打标 + 关联推荐
+                    </div>
+                </div>
+                <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px;">
+                    <div style="color: var(--accent); font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;">📈 验证</div>
+                    <div style="color: var(--muted); font-size: 0.8rem; line-height: 1.6;">
+                        小预算测人群包效率 → 锁定高效放量<br>
+                        按小时监控加购率+转化率 → 调出价和素材
+                    </div>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+                <div style="background: rgba(207, 157, 123, 0.06); border-radius: 10px; padding: 14px 16px;">
+                    <div style="color: var(--accent); font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;">📊 核心结果</div>
+                    <div style="color: var(--text); font-size: 0.85rem; line-height: 1.6;">
+                        ✅ 复购率提升约30%<br>
+                        ✅ 每期覆盖百万级用户<br>
+                        ✅ ROI逐季稳步提升<br>
+                        ✅ 2年沉淀近2w私域用户
+                    </div>
+                </div>
+                <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px;">
+                    <div style="color: var(--accent); font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;">🧠 方法论沉淀</div>
+                    <div style="color: var(--muted); font-size: 0.8rem; line-height: 1.6;">
+                        人群圈选模板 · 复购SOP · 数据看板追踪<br>
+                        <span style="color: var(--text);">每场在“上一场反馈”上迭代</span>，形成正循环
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 案例三 -->
+        <div class="case-block" id="case-detail-3" style="border-left: 4px solid var(--accent); margin-top: 28px; padding: 28px 32px;">
+            <h3 style="font-size: 1.4rem; margin-bottom: 4px; color: var(--text);">案例三：投放体系搭建</h3>
+            <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 6px;">搜索广告 · 展示广告 · 效果广告 · 跨渠道KOL投放</p>
+            <div style="background: rgba(207, 157, 123, 0.08); border-left: 3px solid var(--accent); padding: 12px 16px; border-radius: 6px; margin-bottom: 18px;">
+                <p style="color: var(--text); font-size: 0.88rem; margin: 0;">在京东美妆整合营销中，搭建了覆盖搜索广告、展示广告、效果广告及跨渠道KOL投放的四层投放体系，方法论与字节/腾讯系通用。</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 10px; margin-bottom: 18px;">
+                <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px; padding: 12px 8px; text-align: center;">
+                    <div style="font-size: 1.3rem;">🔍</div>
+                    <div style="color: var(--accent); font-weight: 600; font-size: 0.75rem;">搜索广告</div>
+                    <div style="color: var(--muted); font-size: 0.6rem;">关键词竞价·卡位</div>
+                </div>
+                <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px; padding: 12px 8px; text-align: center;">
+                    <div style="font-size: 1.3rem;">📱</div>
+                    <div style="color: var(--accent); font-weight: 600; font-size: 0.75rem;">展示广告</div>
+                    <div style="color: var(--muted); font-size: 0.6rem;">首页/品类页·信息流</div>
+                </div>
+                <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px; padding: 12px 8px; text-align: center;">
+                    <div style="font-size: 1.3rem;">🎯</div>
+                    <div style="color: var(--accent); font-weight: 600; font-size: 0.75rem;">效果广告</div>
+                    <div style="color: var(--muted); font-size: 0.6rem;">DMP定向·转化</div>
+                </div>
+                <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px; padding: 12px 8px; text-align: center;">
+                    <div style="font-size: 1.3rem;">📸</div>
+                    <div style="color: var(--accent); font-weight: 600; font-size: 0.75rem;">KOL投放</div>
+                    <div style="color: var(--muted); font-size: 0.6rem;">抖音/小红书·CPM</div>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 18px;">
+                <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px;">
+                    <div style="color: var(--accent); font-weight: 600; font-size: 0.7rem; text-transform: uppercase;">人群定向</div>
+                    <div style="color: var(--text); font-size: 0.8rem;">行为标签裂变10+人群包 · 一方数据回传追投</div>
+                </div>
+                <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px;">
+                    <div style="color: var(--accent); font-weight: 600; font-size: 0.7rem; text-transform: uppercase;">出价策略</div>
+                    <div style="color: var(--text); font-size: 0.8rem;">自动探索 → 手动控成本 · 效率拐点内放量</div>
+                </div>
+                <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px;">
+                    <div style="color: var(--accent); font-weight: 600; font-size: 0.7rem; text-transform: uppercase;">素材生命周期</div>
+                    <div style="color: var(--text); font-size: 0.8rem;">CTR连续3天下降即衰退 · 3-5天测换</div>
+                </div>
+                <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px;">
+                    <div style="color: var(--accent); font-weight: 600; font-size: 0.7rem; text-transform: uppercase;">全链路漏斗</div>
+                    <div style="color: var(--text); font-size: 0.8rem;">重点优化“加购→转化” · 限时券+库存提醒</div>
+                </div>
+                <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px;">
+                    <div style="color: var(--accent); font-weight: 600; font-size: 0.7rem; text-transform: uppercase;">竞品拦截</div>
+                    <div style="color: var(--text); font-size: 0.8rem;">品牌词+品类词+竞品词 · 精准词抢排名</div>
+                </div>
+                <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px;">
+                    <div style="color: var(--accent); font-weight: 600; font-size: 0.7rem; text-transform: uppercase;">数据看板</div>
+                    <div style="color: var(--text); font-size: 0.8rem;">CTR/CVR/CAC/ROI · 按小时看异常调策略</div>
+                </div>
+            </div>
+
+            <!-- 跨媒体投放策略 -->
+            <div style="border-top: 1px solid var(--border); padding-top: 16px;">
+                <div style="background: rgba(207, 157, 123, 0.06); border-radius: 8px; padding: 14px 16px; margin-bottom: 14px;">
+                    <div style="color: var(--text); font-size: 0.85rem; font-weight: 600; margin-bottom: 10px;">跨媒体投放策略：防晒品类周的差异化执行</div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+                        <div>
+                            <div style="color: var(--accent); font-weight: 600; font-size: 0.75rem;">字节系（抖音）· 算法推荐驱动</div>
+                            <div style="color: var(--muted); font-size: 0.78rem; line-height: 1.5;">投放重心在素材本身：多条15-30秒短视频，测试不同卖点，让算法跑出CTR最高的组合</div>
+                            <div style="color: var(--muted); font-size: 0.65rem; margin-top: 2px; opacity: 0.6;">⚡ 字节是“内容找人”，素材决定起量速度</div>
+                        </div>
+                        <div>
+                            <div style="color: var(--accent); font-weight: 600; font-size: 0.75rem;">腾讯系（微信）· 社交关系驱动</div>
+                            <div style="color: var(--muted); font-size: 0.78rem; line-height: 1.5;">投放重心在人群圈定与私域沉淀：DMP圈定高偏好人群 + lookalike扩散，朋友圈广告+社群裂变</div>
+                            <div style="color: var(--muted); font-size: 0.65rem; margin-top: 2px; opacity: 0.6;">⚡ 腾讯基于社交关系，需要精准触达+社交背书建立信任</div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 10px; background: rgba(207, 157, 123, 0.08); border-radius: 6px; padding: 6px 12px;">
+                        <div style="color: var(--muted); font-size: 0.75rem;">
+                            <span style="color: var(--accent); font-weight: 600;">互补分工：</span>字节拓新客流量 · 腾讯做深度转化 · 双平台协同放大效果
+                        </div>
+                    </div>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr; gap: 12px;">
+    <div style="border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.06);">
+        <img src="static/image/douyin_sucai.jpg" alt="抖音短视频素材" style="width:100%; aspect-ratio:16/9; object-fit:cover; display:block;" />
+    </div>
+    <div style="border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.06);">
+        <img src="static/image/douyin_ctr.jpg" alt="素材CTR对比" style="width:100%; aspect-ratio:16/9; object-fit:cover; display:block;" />
+    </div>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+        <section id="contact" class="contact">
+            <h2>联系我</h2>
+            <div class="contact-list">
+                <div>邮箱：<a href="mailto:1534968637@qq.com">1534968637@qq.com</a></div>
+                <div>电话：<a href="tel:18511013266">18511013266</a></div>
+            </div>
+        </section>
+
+        <footer>
+            © 2026 王子都
+        </footer>
+    </main>
+
+           <!-- ★★★ 头像视频 全屏映射控制 ★★★ -->
+    <script>
+        (function() {
+            const video = document.getElementById('avatarVideo');
+            if (!video) return;
+
+            video.addEventListener('loadedmetadata', function() {
+                video.currentTime = 0;
+                video.pause();
+            });
+
+            // ★★★ 新的映射函数：全屏覆盖，无死区 ★★★
+            function getTargetTime(mouseX) {
+                const width = window.innerWidth;
+                const ratio = mouseX / width;  // 0 ~ 1
+                const duration = video.duration;
+
+                let t;
+                if (ratio < 0.15) {
+                    // 最左侧 0-15% → 视频 0-10%
+                    t = (ratio / 0.15) * 0.10;
+                } else if (ratio < 0.85) {
+                    // 中间 15-85% → 视频 10-90%
+                    t = 0.10 + ((ratio - 0.15) / 0.70) * 0.80;
+                } else {
+                    // 最右侧 85-100% → 视频 90-100%
+                    t = 0.90 + ((ratio - 0.85) / 0.15) * 0.10;
+                }
+
+                t = Math.max(0, Math.min(1, t));
+                return duration * t;
+            }
+
+            let rafId = null;
+            let targetTime = null;
+
+            function applySeek() {
+                if (targetTime !== null) {
+                    const clamped = Math.max(0, Math.min(targetTime, video.duration));
+                    video.currentTime = clamped;
+                    targetTime = null;
+                }
+                rafId = null;
+            }
+
+            function requestSeek(time) {
+                targetTime = time;
+                if (rafId === null) {
+                    rafId = requestAnimationFrame(applySeek);
+                }
+            }
+
+            // ★★★ 全局鼠标控制 ★★★
+            document.addEventListener('mousemove', function(e) {
+                if (!video || video.readyState < 2) return;
+                const target = getTargetTime(e.clientX);
+                requestSeek(target);
+            });
+
+            video.addEventListener('canplay', function() {
+                video.pause();
+            });
+            video.pause();
+        })();
+    </script>
+
+    <!-- ★★★ 左侧目录导航交互 ★★★ -->
+    <script>
+        (function() {
+            const sidebar = document.getElementById('lineSidebar');
+            const items = document.querySelectorAll('.line-sidebar__item');
+            const list = document.getElementById('sidebarList');
+            if (!list || !items.length) return;
+
+            const itemRefs = [];
+            const targets = [];
+            const currents = [];
+            let rafId = null;
+            let lastTime = 0;
+
+            // 初始化
+            items.forEach((el, i) => {
+                itemRefs[i] = el;
+                targets[i] = 0;
+                currents[i] = 0;
+                el.style.setProperty('--effect', '0');
+            });
+
+            // 鼠标移动
+            list.addEventListener('pointermove', function(e) {
+                const rect = this.getBoundingClientRect();
+                const pointerY = e.clientY - rect.top;
+
+                items.forEach((el, i) => {
+                    const center = el.offsetTop + el.offsetHeight / 2;
+                    const distance = Math.abs(pointerY - center);
+                    const radius = 120;
+                    let value = Math.max(0, 1 - distance / radius);
+                    // smooth 缓动
+                    value = value * value * (3 - 2 * value);
+                    targets[i] = value;
+                });
+
+                startLoop();
+            });
+
+            list.addEventListener('pointerleave', function() {
+                targets.fill(0);
+                startLoop();
+            });
+
+            // 点击跳转
+            items.forEach((el, i) => {
+                el.addEventListener('click', function() {
+                    const targetId = this.dataset.target;
+                    if (targetId) {
+                        const section = document.getElementById(targetId);
+                        if (section) {
+                            section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    }
+                    // 高亮
+                    items.forEach(item => item.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+
+            // 滚动时更新高亮
+            const sections = ['home', 'about', 'projects', 'contact'];
+            window.addEventListener('scroll', function() {
+                let current = 0;
+                sections.forEach((id, i) => {
+                    const el = document.getElementById(id);
+                    if (el) {
+                        const rect = el.getBoundingClientRect();
+                        if (rect.top <= 150) {
+                            current = i;
+                        }
+                    }
+                });
+                items.forEach((el, i) => {
+                    el.classList.toggle('active', i === current);
+                });
+            });
+
+            // RAF 循环
+            function runFrame(now) {
+                const dt = Math.min((now - lastTime) / 1000, 0.05);
+                lastTime = now;
+                const k = 1 - Math.exp(-dt / 0.08);
+
+                let moving = false;
+                items.forEach((el, i) => {
+                    const target = targets[i] || 0;
+                    const cur = currents[i] || 0;
+                    const next = cur + (target - cur) * k;
+                    const settled = Math.abs(target - next) < 0.001;
+                    const value = settled ? target : next;
+                    currents[i] = value;
+                    el.style.setProperty('--effect', value.toFixed(4));
+                    if (!settled) moving = true;
+                });
+
+                rafId = moving ? requestAnimationFrame(runFrame) : null;
+            }
+
+            function startLoop() {
+                if (rafId !== null) {
+                    cancelAnimationFrame(rafId);
+                    rafId = null;
+                }
+                lastTime = performance.now();
+                rafId = requestAnimationFrame(runFrame);
+            }
+
+            // 初始激活第一个
+            items[0].classList.add('active');
+
+            // 初始启动
+            startLoop();
+        })();
+    </script>
+
+  
+
+</body>
+</html>
